@@ -1,5 +1,6 @@
 import math
 import random
+import time
 
 
 def cost_function(x):
@@ -53,13 +54,17 @@ def get_user_input():
     return user_solution, user_temp, user_iter, user_cooling_rate
 
 
-def print_results(c_max, pi):
+def print_results(c_max, pi, measurement_time):
     print('\n--------------------Results:--------------------\n')
     print("c_max:", c_max)
     print("pi:", pi)
+    print("Execution time:", measurement_time, "seconds")
 
 
 solution, temperature, iterations, cooling_rate = get_user_input()
 
+start_time = time.time()
 final_c_max, final_pi = simulated_annealing(solution, temperature, iterations, cooling_rate)
-print_results(final_c_max, final_pi)
+execution_time = time.time() - start_time
+
+print_results(final_c_max, final_pi, execution_time)
